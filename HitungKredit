@@ -1,0 +1,66 @@
+
+import java.util.Scanner;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Aga Putra 2016730006
+ */
+public class Kredit {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Masukkan Pinjaman (Rp)");
+        double pinjaman = sc.nextDouble();
+        System.out.println("Masukkan Suku Bunga Tahunan (%)");
+        double sukuBungaTahunan = sc.nextDouble();
+        System.out.println("Masukkan Tenor/Lama Pinjaman");
+        int tenor = sc.nextInt();
+        System.out.println("Masukkan Biaya Admin (Rp)");
+        double biayaAdmin = sc.nextDouble();
+        double angsuranBungaTotal=0;
+        double angsuranPokokTotal=0;
+        double angsuranTotal=0;
+        double biayaTotal=0;
+        double angsuranPokok =  pinjaman/tenor;
+        double tempBunga;
+        double pinjamanAwal=pinjaman;
+        
+        
+        for (int i = 1; i <= tenor; i++) {
+            System.out.print("Periode Bulan : ");
+            System.out.print(i);
+            System.out.print("  Angsuran Bunga : ");
+            tempBunga = (pinjamanAwal-((i-1)*(pinjamanAwal/tenor))) * (sukuBungaTahunan/12/100);
+            System.out.printf("%.2f",tempBunga);
+            System.out.print("  Angsuran Pokok : ");
+            System.out.printf("%.2f" ,angsuranPokok);
+            System.out.print("  Biaya Admin : ");
+            System.out.printf("%.2f", biayaAdmin);
+            System.out.print("  Total Angsuran : ");
+            System.out.printf("%.2f" , angsuranPokok+tempBunga+biayaAdmin);  
+            angsuranBungaTotal +=tempBunga;
+            angsuranPokokTotal +=angsuranPokok;
+            angsuranTotal += angsuranPokok+tempBunga+biayaAdmin;
+            biayaTotal += biayaAdmin;
+            System.out.print("  Sisa Pinjaman : ");
+            pinjaman -= angsuranPokok;
+            System.out.printf("%.2f" , pinjaman);
+            System.out.println("");
+        }
+        System.out.println("Total");
+        System.out.print("Angsuran Bunga : ");
+        System.out.printf("%.2f",angsuranBungaTotal);
+        System.out.print("  Angsuran Pokok : ");
+        System.out.printf("%.2f",angsuranPokokTotal);
+        System.out.print("    Biaya Admin Total : ");
+        System.out.printf("%.2f",biayaTotal);
+        System.out.print("  Angsuran Total : ");
+        System.out.printf("%.2f",angsuranTotal);
+        
+    }
+}
